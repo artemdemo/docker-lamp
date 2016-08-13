@@ -1,0 +1,9 @@
+FROM mysql:latest
+MAINTAINER Artem Demo
+
+# Copying db to the mysql container
+ADD db/wordpress.sql /tmp
+ADD init_wordpress.sh /tmp
+
+# Creating new db and dumping data
+# RUN /tmp/init_wordpress.sh
