@@ -1,3 +1,7 @@
 .idea
 .DS_Store
 db.sql
+www/*
+!www/index.php
+!www/db-connection.php
+!www/readme.md
