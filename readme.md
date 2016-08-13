@@ -35,7 +35,7 @@ Based on https://www.sitepoint.com/docker-and-dockerfiles-made-easy/
 
 First mount and run mysql container:
 ```
-$ docker run -p 3306:3306 --name mysqlserver -e MYSQL_ROOT_PASSWORD=root -d mysql
+$ docker run -p 3306:3306 --name mysqlserver -e MYSQL_ROOT_PASSWORD=root -d -v $(pwd)/db:/tmp/db mysql
 ```
 The `-e` option lets you set an environment variable on the container creation. In this case, the `MYSQL_ROOT_PASSWORD` will tell the MySQL installation process to use the password we specified in the command.
 
@@ -64,15 +64,11 @@ Well, here is the first recepie:
 
 1. Add `wordpress.sql` to `db` directory
 
-2. Build image:
+2. Then you can run container
     ```
-    $ docker build -t mysql-lamp --file Dockerfile.mysql-wp .
+    $ docker run -p 3306:3306 --name mysqlserver -e MYSQL_ROOT_PASSWORD=root -d -v $(pwd)/db:/tmp/db mysql
     ```
-
-3. Then you can run container
-    ```
-    $ docker run -p 3306:3306 --name mysqlserver -e MYSQL_ROOT_PASSWORD=root -d mysql-lamp
-    ```
+    mysql container will share `/tmp/db` with local `/db` folder.
 
 4. Open console to the running `mysql-lamp` container
     ```
@@ -81,7 +77,7 @@ Well, here is the first recepie:
 
 5. And run
     ```
-    $ /tmp/init_wordpress.sh
+    $ /tmp/db/init_wordpress.sh
     ```
 
     It will create `wordpress` DB and dump `wordpress.sql` in it.
