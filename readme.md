@@ -1,5 +1,7 @@
 # Docker environment: LAMP
 
+`master` branch contain php7.0, if you need php5 you need to use `php5` branch.
+
 ## Basic: Linux, Apache and PHP
 
 Based on https://medium.com/dev-tricks/apache-and-php-on-docker-44faef716150
